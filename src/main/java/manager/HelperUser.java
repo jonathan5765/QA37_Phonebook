@@ -1,5 +1,6 @@
 package manager;
 
+import models.User;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,6 +33,15 @@ public class HelperUser extends HelperBase{
         type(By.xpath("//input[last()]"),password);
 
     }
+    public void fillLoginRegistrationForm(User user){
+//        WebElement emailInput = wd.findElement(By.name("email"));
+//        emailInput.click();
+//        emailInput.clear();
+//        emailInput.sendKeys(email);
+        type(By.name("email"),user.getEmail());
+        type(By.xpath("//input[last()]"),user.getPassword());
+
+    }
     public void submitLogin(){
         click(By.xpath("//button[text()='Login']"));
     }
@@ -57,5 +67,21 @@ public class HelperUser extends HelperBase{
             return true;
         }
         return false;
+    }
+
+    public void submitRegistration() {
+        click(By.cssSelector("button[name='registration']"));
+    }
+
+    public String getMessage() {
+        //wait
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[text()=' No Contacts here!']"))));
+
+        //pause(8000);
+        return wd.findElement(By.xpath("//h1[text()=' No Contacts here!']")).getText();
+        //WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
+        //String text = element.getText();
+        //return text;
     }
 }
