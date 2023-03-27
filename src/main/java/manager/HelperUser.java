@@ -55,8 +55,9 @@ public class HelperUser extends HelperBase{
     public boolean isAlertPresent(String message) {
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        System.out.println(alert.getText());
         if(alert != null && alert.getText().equals(message)){
-            System.out.println(alert.getText());
+
             //click ok
             //pause
 
@@ -76,10 +77,10 @@ public class HelperUser extends HelperBase{
     public String getMessage() {
         //wait
         WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[text()=' No Contacts here!']"))));
+        wait.until(ExpectedConditions.visibilityOf(wd.findElement(By.cssSelector(".contact-page_message__2qafk>h1"))));
 
         //pause(8000);
-        return wd.findElement(By.xpath("//h1[text()=' No Contacts here!']")).getText();
+        return wd.findElement(By.cssSelector(".contact-page_message__2qafk>h1")).getText();
         //WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
         //String text = element.getText();
         //return text;
