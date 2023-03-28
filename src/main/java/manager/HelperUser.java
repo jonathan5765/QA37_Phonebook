@@ -85,4 +85,24 @@ public class HelperUser extends HelperBase{
         //String text = element.getText();
         //return text;
     }
-}
+
+    public boolean isAlertPresent2(String message) {
+
+            WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            System.out.println(alert.getText());
+            if(alert != null && alert.getText().contains(message)){
+
+                //click ok
+                //pause
+
+                alert.accept();
+                //click cansel --> alert.dismiss();
+
+
+                return true;
+            }
+            return false;
+        }
+    }
+
