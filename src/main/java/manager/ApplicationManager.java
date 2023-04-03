@@ -32,7 +32,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public HelperContact getHelperContact() {
+    public HelperContact HelperContact() {
         return helperContact;
     }
 }
