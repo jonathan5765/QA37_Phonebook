@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-public class AddNewContact extends TestBase{
+public class AddNewContact extends TestBase {
     @BeforeClass
     public void preCondition() {
         //if Logout present ---> login
@@ -20,29 +20,31 @@ public class AddNewContact extends TestBase{
     }
 
     @Test
-    public void addNewContactSuccessAll(){
-        int i = new Random().nextInt(1000)+1000;
+    public void addNewContactSuccessAll() {
+        int i = new Random().nextInt(1000) + 1000;
 
         Contact contact = Contact.builder()
                 .name("Ron")
                 .lastName("Zak")
-                .phone("65894721"+i)
+                .phone("65894721" + i)
                 .email("ron" + i + "@gmail.com")
                 .address("TA")
                 .description("friend")
                 .build();
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
+        //add pause
         app.HelperContact().saveNewContact();
         Assert.assertTrue(app.HelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.HelperContact().isContactAddedByPhone(contact.getPhone()));
     }
+
     @Test
-    public void addNewContactSuccess(){
-        int i = new Random().nextInt(1000)+1000;
+    public void addNewContactSuccess() {
+        int i = new Random().nextInt(1000) + 1000;
 
         Contact contact = Contact.builder()
-                .name("Ron"+i)
+                .name("Ron" + i)
                 .lastName("Zak")
                 .phone("87456982" + i)
                 .email("ron" + i + "@gmail.com")
@@ -56,7 +58,7 @@ public class AddNewContact extends TestBase{
     }
 
     @Test
-    public void addNewContactWrongName(){
+    public void addNewContactWrongName() {
         Contact contact = Contact.builder()
                 .name("")
                 .lastName("Zak")
@@ -70,8 +72,9 @@ public class AddNewContact extends TestBase{
         Assert.assertTrue(app.HelperContact().isAddPageStillDisplayed());
 
     }
+
     @Test
-    public void  addNewContactWrongAddress(){
+    public void addNewContactWrongAddress() {
         Contact contact = Contact.builder()
                 .name("Ron")
                 .lastName("Zak")
@@ -87,7 +90,8 @@ public class AddNewContact extends TestBase{
     }
 
     @Test
-    public void addNewContactWrongLastName(){
+    public void addNewContactWrongLastName() {
+        int i = new Random().nextInt(1000) + 1000;
         Contact contact = Contact.builder()
                 .name("Ron")
                 .lastName("")
@@ -97,16 +101,18 @@ public class AddNewContact extends TestBase{
                 .build();
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
+        app.HelperContact().getScreen("src/test/screenshots/screen-" + i + ".png");
         app.HelperContact().saveNewContact();
         Assert.assertTrue(app.HelperContact().isAddPageStillDisplayed());
 
     }
+
     @Test
-    public void addNewContactWrongPhone(){
+    public void addNewContactWrongPhone() {
         Contact contact = Contact.builder()
                 .name("Ron")
                 .lastName("Zak")
-                .phone("")
+                .phone("123")
                 .email("ron@gmail.com")
                 .address("NY")
                 .build();
@@ -117,8 +123,9 @@ public class AddNewContact extends TestBase{
         Assert.assertTrue(app.getHelperUser().isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
 
     }
+
     @Test
-    public void addNewContactWrongEmail(){
+    public void addNewContactWrongEmail() {
         Contact contact = Contact.builder()
                 .name("Ron")
                 .lastName("Zak")
