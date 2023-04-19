@@ -16,11 +16,14 @@ public class AddNewContact extends TestBase {
         //if Logout present ---> login
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().setEmail("tirex@gmail.com").setPassword("Rr12345$"));
+            logger.info("Before method is present login");
         }
     }
 
     @Test
     public void addNewContactSuccessAll() {
+        logger.info("Start test with name 'addNewContactSuccess'");
+        logger.info("Test data --> ");
         int i = new Random().nextInt(1000) + 1000;
 
         Contact contact = Contact.builder()
@@ -29,14 +32,16 @@ public class AddNewContact extends TestBase {
                 .phone("65894721" + i)
                 .email("ron" + i + "@gmail.com")
                 .address("TA")
-                .description("friend")
+                .description("all fields")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         //add pause
         app.HelperContact().saveNewContact();
         Assert.assertTrue(app.HelperContact().isContactAddedByName(contact.getName()));
         Assert.assertTrue(app.HelperContact().isContactAddedByPhone(contact.getPhone()));
+        logger.info("Assert check is the new Contact present");
     }
 
     @Test
@@ -44,12 +49,14 @@ public class AddNewContact extends TestBase {
         int i = new Random().nextInt(1000) + 1000;
 
         Contact contact = Contact.builder()
-                .name("Ron" + i)
+                .name("RonReq" + i)
                 .lastName("Zak")
                 .phone("87456982" + i)
                 .email("ron" + i + "@gmail.com")
                 .address("TA")
+                .description("description")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().saveNewContact();
@@ -65,7 +72,9 @@ public class AddNewContact extends TestBase {
                 .phone("8745698234")
                 .email("ron@gmail.com")
                 .address("TA")
+                .description("empty name")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().saveNewContact();
@@ -81,7 +90,9 @@ public class AddNewContact extends TestBase {
                 .phone("8745698234")
                 .email("ron@gmail.com")
                 .address("")
+                .description("empty address")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().saveNewContact();
@@ -98,7 +109,9 @@ public class AddNewContact extends TestBase {
                 .phone("8745698234")
                 .email("ron@gmail.com")
                 .address("NY")
+                .description("empty last name")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().getScreen("src/test/screenshots/screen-" + i + ".png");
@@ -115,7 +128,9 @@ public class AddNewContact extends TestBase {
                 .phone("123")
                 .email("ron@gmail.com")
                 .address("NY")
+                .description("wrong phone")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().saveNewContact();
@@ -132,7 +147,9 @@ public class AddNewContact extends TestBase {
                 .phone("8745698234")
                 .email("starkgmail.com")
                 .address("NY")
+                .description("wrong email")
                 .build();
+        logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
         app.HelperContact().saveNewContact();

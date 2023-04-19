@@ -24,9 +24,14 @@ public class HelperBase {
         WebElement element = wd.findElement(locator);
         element.click();
         element.clear();
+        clearNew(element);
         if (text != null) {
             element.sendKeys(text);
         }
+    }
+    public void clearNew(WebElement element){
+        element.sendKeys(" ");
+        element.sendKeys(Keys.BACK_SPACE);
     }
 
     public void click(By locator) {

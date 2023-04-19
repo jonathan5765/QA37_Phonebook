@@ -26,6 +26,7 @@ public class RegistrationTests extends TestBase {
 
         User user = new User().setEmail("tor" + i + "@gmail.com")
                 .setPassword("Tor12345$");
+        logger.info("Tests run with data --->" + user.toString());
 
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
@@ -41,7 +42,7 @@ public class RegistrationTests extends TestBase {
 
         User user = new User().setEmail("tor1@gmail.com")
                 .setPassword("Rr12345$");
-
+        logger.info("Tests run with data --->" + user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -54,7 +55,7 @@ public class RegistrationTests extends TestBase {
 
         User user = new User().setEmail("tor1gmail.com")
                 .setPassword("Rr12345$");
-
+        logger.info("Tests run with data --->" + user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();
@@ -75,7 +76,7 @@ public class RegistrationTests extends TestBase {
 
         User user = new User().setEmail("tor1@gmail.com")
                 .setPassword("Rr12345");
-
+        logger.info("Tests run with data --->" + user.toString());
         app.getHelperUser().openLoginRegistrationForm();
         app.getHelperUser().fillLoginRegistrationForm(user);
         app.getHelperUser().submitRegistration();

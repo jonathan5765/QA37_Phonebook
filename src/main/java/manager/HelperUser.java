@@ -29,8 +29,8 @@ public class HelperUser extends HelperBase{
 //        emailInput.click();
 //        emailInput.clear();
 //        emailInput.sendKeys(email);
-        type(By.name("email"),email);
-        type(By.xpath("//input[last()]"),password);
+          type(By.name("email"),email);
+          type(By.xpath("//input[last()]"),password);
 
     }
     public void fillLoginRegistrationForm(User user){
