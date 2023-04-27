@@ -112,16 +112,16 @@ public class AddNewContact extends TestBase {
 
     }
 
-    @Test
-    public void addNewContactWrongPhone() {
-        Contact contact = Contact.builder()
-                .name("Ron")
-                .lastName("Zak")
-                .phone("123")
-                .email("ron@gmail.com")
-                .address("NY")
-                .description("wrong phone")
-                .build();
+    @Test(dataProvider = "contactWrongPhone", dataProviderClass = DataProviderContact.class)
+    public void addNewContactWrongPhone(Contact contact) {
+//        Contact contact = Contact.builder()
+//                .name("Ron")
+//                .lastName("Zak")
+//                .phone("123")
+//                .email("ron@gmail.com")
+//                .address("NY")
+//                .description("wrong phone")
+//                .build();
         logger.info("Tests run with data --->" + contact.toString());
         app.HelperContact().openAddNewContactForm();
         app.HelperContact().fillAddNewContactForm(contact);
