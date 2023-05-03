@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class AddNewContact extends TestBase {
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void preCondition() {
         //if Logout present ---> login
         if (!app.getHelperUser().isLogged()) {
@@ -36,7 +36,7 @@ public class AddNewContact extends TestBase {
         logger.info("Assert check is the new Contact present");
     }
 
-    @Test
+    @Test(groups = {"smoke","regress","retest"})
     public void addNewContactSuccess() {
         int i = new Random().nextInt(1000) + 1000;
 
@@ -150,4 +150,16 @@ public class AddNewContact extends TestBase {
 
     }
 
+    @Test(dataProvider = "contactCSV", dataProviderClass = DataProviderContact.class)
+    public void addNewContactSuccessAllCSV(Contact contact) {
+
+        logger.info("Tests run with data --->" + contact.toString());
+        app.HelperContact().openAddNewContactForm();
+        app.HelperContact().fillAddNewContactForm(contact);
+        //add pause
+        app.HelperContact().saveNewContact();
+        Assert.assertTrue(app.HelperContact().isContactAddedByName(contact.getName()));
+        Assert.assertTrue(app.HelperContact().isContactAddedByPhone(contact.getPhone()));
+
+    }
 }

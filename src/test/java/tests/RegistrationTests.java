@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class RegistrationTests extends TestBase {
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         //if SignOut present ---> logout
         if (app.getHelperUser().isLogged()) {
@@ -18,7 +18,7 @@ public class RegistrationTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void registrationSuccess() {
         Random random = new Random();
         int i = random.nextInt(1000);
